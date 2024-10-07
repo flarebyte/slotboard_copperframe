@@ -98,6 +98,53 @@ void main() {
       expect(slot.tags, ['preview']);
     });
 
-    // Add tests for other slots like InputSlot, HistorySlot, ShortcutSlot, etc.
+    test('history should create HistorySlot with correct parameters', () {
+      var slot = CopperframeSlots.history(
+        prominence: 'important',
+        size: 'small',
+        tags: ['main', 'urgent'],
+      );
+
+      expect(slot, isA<HistorySlot>());
+      expect(slot.prominence, 'important');
+      expect(slot.size, 'small');
+      expect(slot.tags, ['main', 'urgent']);
+    });
+    test('help should create HelpSlot with correct parameters', () {
+      var slot = CopperframeSlots.help(
+        prominence: 'important',
+        size: 'small',
+        tags: ['main', 'urgent'],
+      );
+
+      expect(slot, isA<HelpSlot>());
+      expect(slot.prominence, 'important');
+      expect(slot.size, 'small');
+      expect(slot.tags, ['main', 'urgent']);
+    });
+    test('outline should create OutlineSlot with correct parameters', () {
+      var slot = CopperframeSlots.outline(
+        prominence: 'important',
+        size: 'small',
+        tags: ['main', 'urgent'],
+      );
+
+      expect(slot, isA<OutlineSlot>());
+      expect(slot.prominence, 'important');
+      expect(slot.size, 'small');
+      expect(slot.tags, ['main', 'urgent']);
+    });
+    test('input should create InputSlot with correct parameters', () {
+      var slot = CopperframeSlots.input(
+        prominence: 'important',
+        size: 'small',
+        tags: ['main', 'urgent'],
+      );
+
+      expect(slot, isA<InputSlot>());
+      expect(slot.prominence, 'important');
+      expect(slot.size, 'small');
+      expect(slot.tags, ['main', 'urgent']);
+    });
   });
 }
