@@ -3,8 +3,6 @@ import 'package:flutter_test/flutter_test.dart';
 
 class TestSlot extends CopperframeSlotBase {
   TestSlot({
-    required super.prominence,
-    required super.size,
     required super.tags,
   });
 }
@@ -12,8 +10,8 @@ class TestSlot extends CopperframeSlotBase {
 void main() {
   group('CopperframeSlotBase', () {
     test('toJson should correctly serialize to JSON', () {
-      var slot = TestSlot(
-          prominence: 'important', size: 'small', tags: ['main', 'urgent']);
+      var slot = TestSlot(tags: ['main', 'urgent'])
+          .setValues(prominence: 'important', size: 'small');
       var expectedJson = {
         'prominence': 'important',
         'size': 'small',
@@ -32,9 +30,10 @@ void main() {
 
       var slot = CopperframeSlotBase.fromJson(jsonData, (json) {
         return TestSlot(
+          tags: List<String>.from(json['tags']),
+        ).setValues(
           prominence: json['prominence'],
           size: json['size'],
-          tags: List<String>.from(json['tags']),
         );
       });
 
@@ -53,9 +52,10 @@ void main() {
 
     test('registerSlot should add slot to the list', () {
       var slot = InfoMessageSlot(
+        tags: ['main'],
+      ).setValues(
         prominence: 'important',
         size: 'small',
-        tags: ['main'],
       );
       registry.registerSlot(slot);
 
@@ -64,14 +64,16 @@ void main() {
 
     test('setProminenceWhereTags should update correct slots', () {
       var slot1 = InfoMessageSlot(
+        tags: ['main'],
+      ).setValues(
         prominence: 'important',
         size: 'small',
-        tags: ['main'],
       );
       var slot2 = WarnMessageSlot(
+        tags: ['urgent'],
+      ).setValues(
         prominence: 'very-important',
         size: 'medium',
-        tags: ['urgent'],
       );
       registry.registerSlot(slot1);
       registry.registerSlot(slot2);
@@ -83,14 +85,16 @@ void main() {
 
     test('setSizeWhereTags should update correct slots', () {
       var slot1 = InfoMessageSlot(
+        tags: ['main'],
+      ).setValues(
         prominence: 'important',
         size: 'small',
-        tags: ['main'],
       );
       var slot2 = WarnMessageSlot(
+        tags: ['urgent'],
+      ).setValues(
         prominence: 'very-important',
         size: 'medium',
-        tags: ['urgent'],
       );
       registry.registerSlot(slot1);
       registry.registerSlot(slot2);
@@ -102,14 +106,16 @@ void main() {
 
     test('setProminenceExcludingTags should update only untagged slots', () {
       var slot1 = InfoMessageSlot(
+        tags: ['main'],
+      ).setValues(
         prominence: 'important',
         size: 'small',
-        tags: ['main'],
       );
       var slot2 = WarnMessageSlot(
+        tags: ['urgent'],
+      ).setValues(
         prominence: 'very-important',
         size: 'medium',
-        tags: ['urgent'],
       );
       registry.registerSlot(slot1);
       registry.registerSlot(slot2);
@@ -121,14 +127,16 @@ void main() {
 
     test('setSizeExcludingTags should update only untagged slots', () {
       var slot1 = InfoMessageSlot(
+        tags: ['main'],
+      ).setValues(
         prominence: 'important',
         size: 'small',
-        tags: ['main'],
       );
       var slot2 = WarnMessageSlot(
+        tags: ['urgent'],
+      ).setValues(
         prominence: 'very-important',
         size: 'medium',
-        tags: ['urgent'],
       );
       registry.registerSlot(slot1);
       registry.registerSlot(slot2);
@@ -140,14 +148,16 @@ void main() {
 
     test('setProminenceByClassname should update correct class slots', () {
       var slot1 = InfoMessageSlot(
+        tags: ['main'],
+      ).setValues(
         prominence: 'important',
         size: 'small',
-        tags: ['main'],
       );
       var slot2 = WarnMessageSlot(
+        tags: ['urgent'],
+      ).setValues(
         prominence: 'very-important',
         size: 'medium',
-        tags: ['urgent'],
       );
       registry.registerSlot(slot1);
       registry.registerSlot(slot2);
@@ -159,14 +169,16 @@ void main() {
 
     test('setSizeByClassname should update correct class slots', () {
       var slot1 = InfoMessageSlot(
+        tags: ['main'],
+      ).setValues(
         prominence: 'important',
         size: 'small',
-        tags: ['main'],
       );
       var slot2 = WarnMessageSlot(
+        tags: ['urgent'],
+      ).setValues(
         prominence: 'very-important',
         size: 'medium',
-        tags: ['urgent'],
       );
       registry.registerSlot(slot1);
       registry.registerSlot(slot2);
@@ -180,9 +192,10 @@ void main() {
         'setProminenceWhereTags edge case with empty tags should update nothing',
         () {
       var slot = InfoMessageSlot(
+        tags: ['main'],
+      ).setValues(
         prominence: 'important',
         size: 'small',
-        tags: ['main'],
       );
       registry.registerSlot(slot);
 
@@ -194,9 +207,10 @@ void main() {
         'setProminenceExcludingTags edge case with empty tags should update all slots',
         () {
       var slot = InfoMessageSlot(
+        tags: ['main'],
+      ).setValues(
         prominence: 'important',
         size: 'small',
-        tags: ['main'],
       );
       registry.registerSlot(slot);
 

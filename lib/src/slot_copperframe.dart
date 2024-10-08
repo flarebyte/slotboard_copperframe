@@ -1,21 +1,51 @@
 abstract class CopperframeSlotBase {
-  String prominence;
-  String size;
+  String _prominence = '';
+  String _size = '';
   List<String> tags;
 
   CopperframeSlotBase({
-    required this.prominence,
-    required this.size,
     required this.tags,
   });
 
   // Serializes the slot to JSON
   Map<String, dynamic> toJson() {
     return {
-      'prominence': prominence,
-      'size': size,
+      'prominence': _prominence,
+      'size': _size,
       'tags': tags,
     };
+  }
+
+  /// The prominence of the slot (important, very-important, ...)
+  String get prominence {
+    return _prominence;
+  }
+
+  /// Set the prominence of the slot (important, very-important,...)
+  set prominence(String prominence) {
+    _prominence = prominence;
+  }
+
+  /// The size of the slot (small, medium, large...)
+  String get size {
+    return _size;
+  }
+
+  /// Set the size of the slot (small, medium, large...)
+  set size(String size) {
+    _size = size;
+  }
+
+  /// Sets the prominence and size of a slot
+  setValues({String? prominence, String? size}) {
+    if (prominence != null) {
+      _prominence = prominence;
+    }
+
+    if (size != null) {
+      _size = size;
+    }
+    return this;
   }
 
   // Deserializes from JSON to a slot

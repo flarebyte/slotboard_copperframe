@@ -6,9 +6,10 @@ void main() {
     test('infoMessage should create InfoMessageSlot with correct parameters',
         () {
       var slot = CopperframeSlots.infoMessage(
+        tags: ['main', 'urgent'],
+      ).setValues(
         prominence: 'important',
         size: 'small',
-        tags: ['main', 'urgent'],
       );
 
       expect(slot, isA<InfoMessageSlot>());
@@ -20,9 +21,10 @@ void main() {
     test('warnMessage should create WarnMessageSlot with correct parameters',
         () {
       var slot = CopperframeSlots.warnMessage(
+        tags: ['urgent'],
+      ).setValues(
         prominence: 'very-important',
         size: 'medium',
-        tags: ['urgent'],
       );
 
       expect(slot, isA<WarnMessageSlot>());
@@ -34,9 +36,10 @@ void main() {
     test('errorMessage should create ErrorMessageSlot with correct parameters',
         () {
       var slot = CopperframeSlots.errorMessage(
+        tags: ['error'],
+      ).setValues(
         prominence: 'critical',
         size: 'large',
-        tags: ['error'],
       );
 
       expect(slot, isA<ErrorMessageSlot>());
@@ -47,15 +50,17 @@ void main() {
 
     test('Creating slots with empty tags should work as expected', () {
       var infoSlot = CopperframeSlots.infoMessage(
+        tags: [],
+      ).setValues(
         prominence: 'important',
         size: 'small',
-        tags: [],
       );
 
       var warnSlot = CopperframeSlots.warnMessage(
+        tags: [],
+      ).setValues(
         prominence: 'very-important',
         size: 'medium',
-        tags: [],
       );
 
       expect(infoSlot.tags, isEmpty);
@@ -64,15 +69,17 @@ void main() {
 
     test('Slots should retain class-specific behavior', () {
       var infoSlot = CopperframeSlots.infoMessage(
+        tags: ['main'],
+      ).setValues(
         prominence: 'important',
         size: 'small',
-        tags: ['main'],
       );
 
       var errorSlot = CopperframeSlots.errorMessage(
+        tags: ['error'],
+      ).setValues(
         prominence: 'critical',
         size: 'large',
-        tags: ['error'],
       );
 
       expect(
@@ -87,9 +94,10 @@ void main() {
         'PreviewSlot factory should create PreviewSlot with correct parameters',
         () {
       var slot = CopperframeSlots.preview(
+        tags: ['preview'],
+      ).setValues(
         prominence: 'normal',
         size: 'medium',
-        tags: ['preview'],
       );
 
       expect(slot, isA<PreviewSlot>());
@@ -100,9 +108,10 @@ void main() {
 
     test('history should create HistorySlot with correct parameters', () {
       var slot = CopperframeSlots.history(
+        tags: ['main', 'urgent'],
+      ).setValues(
         prominence: 'important',
         size: 'small',
-        tags: ['main', 'urgent'],
       );
 
       expect(slot, isA<HistorySlot>());
@@ -112,9 +121,10 @@ void main() {
     });
     test('help should create HelpSlot with correct parameters', () {
       var slot = CopperframeSlots.help(
+        tags: ['main', 'urgent'],
+      ).setValues(
         prominence: 'important',
         size: 'small',
-        tags: ['main', 'urgent'],
       );
 
       expect(slot, isA<HelpSlot>());
@@ -124,9 +134,10 @@ void main() {
     });
     test('outline should create OutlineSlot with correct parameters', () {
       var slot = CopperframeSlots.outline(
+        tags: ['main', 'urgent'],
+      ).setValues(
         prominence: 'important',
         size: 'small',
-        tags: ['main', 'urgent'],
       );
 
       expect(slot, isA<OutlineSlot>());
@@ -136,9 +147,10 @@ void main() {
     });
     test('input should create InputSlot with correct parameters', () {
       var slot = CopperframeSlots.input(
+        tags: ['main', 'urgent'],
+      ).setValues(
         prominence: 'important',
         size: 'small',
-        tags: ['main', 'urgent'],
       );
 
       expect(slot, isA<InputSlot>());
