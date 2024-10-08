@@ -1,5 +1,5 @@
 import 'package:slotboard_copperframe/src/slot_factory.dart';
-import 'package:test/test.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group('CopperframeSlots Factory Tests', () {

@@ -1,5 +1,5 @@
 import 'package:slotboard_copperframe/slotboard_copperframe.dart';
-import 'package:test/test.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 class TestSlot extends CopperframeSlotBase {
   TestSlot({
