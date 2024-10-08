@@ -1,4 +1,6 @@
-abstract class CopperframeSlotBase {
+import 'package:flutter/foundation.dart';
+
+abstract class CopperframeSlotBase with ChangeNotifier {
   String _prominence = '';
   String _size = '';
   List<String> tags;
@@ -24,6 +26,7 @@ abstract class CopperframeSlotBase {
   /// Set the prominence of the slot (important, very-important,...)
   set prominence(String prominence) {
     _prominence = prominence;
+    notifyListeners();
   }
 
   /// The size of the slot (small, medium, large...)
@@ -34,6 +37,7 @@ abstract class CopperframeSlotBase {
   /// Set the size of the slot (small, medium, large...)
   set size(String size) {
     _size = size;
+    notifyListeners();
   }
 
   /// Sets the prominence and size of a slot
@@ -45,6 +49,7 @@ abstract class CopperframeSlotBase {
     if (size != null) {
       _size = size;
     }
+    notifyListeners();
     return this;
   }
 
