@@ -55,6 +55,8 @@ workflows:
               run: dart format lib
             - title: Format nicely the test source code
               run: dart format test
+            - title: Analyze the project's Dart code
+              run: flutter analyze
             - title: Run test coverage
               run: flutter test --coverage
             - title: Display test coverage Summary

@@ -3,10 +3,10 @@ import 'package:flutter_test/flutter_test.dart';
 
 class TestSlot extends CopperframeSlotBase {
   TestSlot({
-    required String prominence,
-    required String size,
-    required List<String> tags,
-  }) : super(prominence: prominence, size: size, tags: tags);
+    required super.prominence,
+    required super.size,
+    required super.tags,
+  });
 }
 
 void main() {
