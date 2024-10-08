@@ -10,8 +10,13 @@ class TestSlot extends CopperframeSlotBase {
 void main() {
   group('CopperframeSlotBase', () {
     test('toJson should correctly serialize to JSON', () {
-      var slot = TestSlot(tags: ['main', 'urgent'])
-          .setValues(prominence: 'important', size: 'small');
+      List<String> listenerCalls = [];
+      var slot = TestSlot(tags: ['main', 'urgent']);
+
+      slot.addListener(() {
+        listenerCalls.add('call');
+      });
+      slot.setValues(prominence: 'important', size: 'small');
       var expectedJson = {
         'prominence': 'important',
         'size': 'small',
@@ -23,6 +28,7 @@ void main() {
           slot.toString(),
           equals(
               'TestSlot: prominence: important, size: small, tags: [main, urgent]'));
+      expect(listenerCalls, hasLength(1));
     });
 
     test('fromJson should correctly deserialize from JSON', () {
@@ -45,6 +51,23 @@ void main() {
       expect(slot.size, equals('small'));
       expect(slot.tags, equals(['main', 'urgent']));
     });
+  });
+
+  test('setting prominence abd size should nofify listeners twice', () {
+    List<String> listenerCalls = [];
+    var slot = TestSlot(tags: ['main', 'urgent']);
+
+    slot.addListener(() {
+      listenerCalls.add('call');
+    });
+    slot.prominence = 'important';
+    slot.size = 'small';
+
+    expect(
+        slot.toString(),
+        equals(
+            'TestSlot: prominence: important, size: small, tags: [main, urgent]'));
+    expect(listenerCalls, hasLength(2));
   });
 
   group('CopperframeSlotRegistry Tests', () {
