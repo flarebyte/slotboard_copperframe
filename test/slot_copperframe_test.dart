@@ -19,6 +19,10 @@ void main() {
       };
 
       expect(slot.toJson(), equals(expectedJson));
+      expect(
+          slot.toString(),
+          equals(
+              'TestSlot: prominence: important, size: small, tags: [main, urgent]'));
     });
 
     test('fromJson should correctly deserialize from JSON', () {

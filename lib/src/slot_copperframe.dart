@@ -53,6 +53,11 @@ abstract class CopperframeSlotBase with ChangeNotifier {
     return this;
   }
 
+  @override
+  String toString() {
+    return '$runtimeType: prominence: $prominence, size: $size, tags: $tags';
+  }
+
   // Deserializes from JSON to a slot
   static CopperframeSlotBase fromJson(Map<String, dynamic> json,
       CopperframeSlotBase Function(Map<String, dynamic>) createSlot) {
