@@ -75,7 +75,9 @@ void main() {
     });
   });
 
-  test('setting prominence abd size should nofify listeners twice', () {
+  test(
+      'setting prominence, size, status, and secondary status should nofify listeners 4 times',
+      () {
     List<String> listenerCalls = [];
     var slot = TestSlot(tags: ['main', 'urgent']);
 
@@ -84,11 +86,30 @@ void main() {
     });
     slot.prominence = 'important';
     slot.size = 'small';
+    slot.status = 'ok';
+    slot.secondaryStatus = '5+';
 
     expect(
         slot.toString(),
         equals(
-            'TestSlot:: tags: [main, urgent], prominence: important, size: small, status: , 2nd status: '));
+            'TestSlot:: tags: [main, urgent], prominence: important, size: small, status: ok, 2nd status: 5+'));
+    expect(listenerCalls, hasLength(4));
+  });
+
+  test('setting title and description should nofify listeners twice', () {
+    List<String> listenerCalls = [];
+    var slot = TestSlot(tags: ['main', 'urgent']);
+
+    slot.addListener(() {
+      listenerCalls.add('call');
+    });
+    slot.title = 'some title';
+    slot.description = 'some description';
+
+    expect(
+        slot.toString(),
+        equals(
+            'TestSlot:: tags: [main, urgent], prominence: , size: , status: , 2nd status: '));
     expect(listenerCalls, hasLength(2));
   });
 
