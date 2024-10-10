@@ -7,6 +7,18 @@ class TestSlot extends CopperframeSlotBase {
   });
 }
 
+class InfoMessageSlot extends CopperframeSlotBase {
+  InfoMessageSlot({
+    required super.tags,
+  });
+}
+
+class WarnMessageSlot extends CopperframeSlotBase {
+  WarnMessageSlot({
+    required super.tags,
+  });
+}
+
 void main() {
   group('CopperframeSlotBase', () {
     test('toJson should correctly serialize to JSON', () {
