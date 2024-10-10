@@ -168,6 +168,44 @@ class CopperframeSlotRegistry {
     }
   }
 
+  // Sets status for all slots that match any of the provided tags
+  void setStatusWhereTags(String newStatus, {required List<String> tags}) {
+    for (var slot in _slots) {
+      if (slot.tags.any((tag) => tags.contains(tag))) {
+        slot.status = newStatus;
+      }
+    }
+  }
+
+  // Sets secondary status for all slots that match any of the provided tags
+  void setSecondaryStatusWhereTags(String newSecondaryStatus,
+      {required List<String> tags}) {
+    for (var slot in _slots) {
+      if (slot.tags.any((tag) => tags.contains(tag))) {
+        slot.secondaryStatus = newSecondaryStatus;
+      }
+    }
+  }
+
+  // Sets title for all slots that match any of the provided tags
+  void setTitleWhereTags(String newTitle, {required List<String> tags}) {
+    for (var slot in _slots) {
+      if (slot.tags.any((tag) => tags.contains(tag))) {
+        slot.title = newTitle;
+      }
+    }
+  }
+
+  // Sets description for all slots that match any of the provided tags
+  void setDescriptionWhereTags(String newDescription,
+      {required List<String> tags}) {
+    for (var slot in _slots) {
+      if (slot.tags.any((tag) => tags.contains(tag))) {
+        slot.description = newDescription;
+      }
+    }
+  }
+
   // Sets prominence for all slots except those that match any of the provided tags
   void setProminenceExcludingTags(String newProminence,
       {required List<String> tags}) {
@@ -187,6 +225,44 @@ class CopperframeSlotRegistry {
     }
   }
 
+  // Sets status for all slots except those that match any of the provided tags
+  void setStatusExcludingTags(String newStatus, {required List<String> tags}) {
+    for (var slot in _slots) {
+      if (!slot.tags.any((tag) => tags.contains(tag))) {
+        slot.status = newStatus;
+      }
+    }
+  }
+
+  // Sets secondary status for all slots except those that match any of the provided tags
+  void setSecondaryStatusExcludingTags(String newSecondaryStatus,
+      {required List<String> tags}) {
+    for (var slot in _slots) {
+      if (!slot.tags.any((tag) => tags.contains(tag))) {
+        slot.secondaryStatus = newSecondaryStatus;
+      }
+    }
+  }
+
+  // Sets title for all slots except those that match any of the provided tags
+  void setTitleExcludingTags(String newTitle, {required List<String> tags}) {
+    for (var slot in _slots) {
+      if (!slot.tags.any((tag) => tags.contains(tag))) {
+        slot.title = newTitle;
+      }
+    }
+  }
+
+  // Sets description for all slots except those that match any of the provided tags
+  void setDescriptionExcludingTags(String newDescription,
+      {required List<String> tags}) {
+    for (var slot in _slots) {
+      if (!slot.tags.any((tag) => tags.contains(tag))) {
+        slot.description = newDescription;
+      }
+    }
+  }
+
   // Sets prominence based on class name
   void setProminenceByClassname(String newProminence, Type className) {
     for (var slot in _slots.where((slot) => slot.runtimeType == className)) {
@@ -198,6 +274,35 @@ class CopperframeSlotRegistry {
   void setSizeByClassname(String newSize, Type className) {
     for (var slot in _slots.where((slot) => slot.runtimeType == className)) {
       slot.size = newSize;
+    }
+  }
+
+  // Sets status based on class name
+  void setStatusByClassname(String newStatus, Type className) {
+    for (var slot in _slots.where((slot) => slot.runtimeType == className)) {
+      slot.status = newStatus;
+    }
+  }
+
+  // Sets secondary status based on class name
+  void setSecondaryStatusByClassname(
+      String newSecondaryStatus, Type className) {
+    for (var slot in _slots.where((slot) => slot.runtimeType == className)) {
+      slot.secondaryStatus = newSecondaryStatus;
+    }
+  }
+
+  // Sets title based on class name
+  void setTitleByClassname(String newTitle, Type className) {
+    for (var slot in _slots.where((slot) => slot.runtimeType == className)) {
+      slot.title = newTitle;
+    }
+  }
+
+  // Sets description based on class name
+  void setDescriptionByClassname(String newDescription, Type className) {
+    for (var slot in _slots.where((slot) => slot.runtimeType == className)) {
+      slot.description = newDescription;
     }
   }
 }
