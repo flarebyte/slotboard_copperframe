@@ -28,18 +28,28 @@ void main() {
       slot.addListener(() {
         listenerCalls.add('call');
       });
-      slot.setValues(prominence: 'important', size: 'small');
+      slot.setValues(
+          prominence: 'important',
+          size: 'small',
+          status: 'ok',
+          secondaryStatus: '5+',
+          title: 'Short title',
+          description: 'description can be tooltip');
       var expectedJson = {
+        'tags': ['main', 'urgent'],
         'prominence': 'important',
         'size': 'small',
-        'tags': ['main', 'urgent'],
+        'status': 'ok',
+        'secondaryStatus': '5+',
+        'title': 'Short title',
+        'description': 'description can be tooltip'
       };
 
       expect(slot.toJson(), equals(expectedJson));
       expect(
           slot.toString(),
           equals(
-              'TestSlot: prominence: important, size: small, tags: [main, urgent]'));
+              'TestSlot:: tags: [main, urgent], prominence: important, size: small, status: ok, 2nd status: 5+'));
       expect(listenerCalls, hasLength(1));
     });
 
@@ -78,7 +88,7 @@ void main() {
     expect(
         slot.toString(),
         equals(
-            'TestSlot: prominence: important, size: small, tags: [main, urgent]'));
+            'TestSlot:: tags: [main, urgent], prominence: important, size: small, status: , 2nd status: '));
     expect(listenerCalls, hasLength(2));
   });
 

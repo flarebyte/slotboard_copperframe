@@ -3,6 +3,10 @@ import 'package:flutter/foundation.dart';
 abstract class CopperframeSlotBase with ChangeNotifier {
   String _prominence = '';
   String _size = '';
+  String _status = '';
+  String _secondaryStatus = '';
+  String _title = '';
+  String _description = '';
   List<String> tags;
 
   CopperframeSlotBase({
@@ -12,9 +16,13 @@ abstract class CopperframeSlotBase with ChangeNotifier {
   // Serializes the slot to JSON
   Map<String, dynamic> toJson() {
     return {
+      'tags': tags,
       'prominence': _prominence,
       'size': _size,
-      'tags': tags,
+      'status': _status,
+      'secondaryStatus': _secondaryStatus,
+      'title': _title,
+      'description': _description,
     };
   }
 
@@ -40,8 +48,58 @@ abstract class CopperframeSlotBase with ChangeNotifier {
     notifyListeners();
   }
 
-  /// Sets the prominence and size of a slot
-  setValues({String? prominence, String? size}) {
+  /// Set the status of the slot (ok, ko, ...)
+  set status(String status) {
+    _status = status;
+    notifyListeners();
+  }
+
+  /// The status of the slot (ok, ko, ...)
+  String get status {
+    return _status;
+  }
+
+  /// Set the secondary status of the slot (1, 2, 3+, ...)
+  set secondaryStatus(String status) {
+    _secondaryStatus = status;
+    notifyListeners();
+  }
+
+  /// The secondary status of the slot (1, 2, 3+, ...)
+  String get secondaryStatus {
+    return _secondaryStatus;
+  }
+
+  /// Set a title for the slot
+  set title(String title) {
+    _title = title;
+    notifyListeners();
+  }
+
+  /// The title for the slot
+  String get title {
+    return _title;
+  }
+
+  /// Set a description or tooltip for the slot
+  set description(String description) {
+    _description = description;
+    notifyListeners();
+  }
+
+  /// The description or tooltip for the slot
+  String get description {
+    return _description;
+  }
+
+  /// Sets the values for the slot
+  setValues(
+      {String? prominence,
+      String? size,
+      String? status,
+      String? secondaryStatus,
+      String? title,
+      String? description}) {
     if (prominence != null) {
       _prominence = prominence;
     }
@@ -49,13 +107,26 @@ abstract class CopperframeSlotBase with ChangeNotifier {
     if (size != null) {
       _size = size;
     }
+    if (status != null) {
+      _status = status;
+    }
+    if (secondaryStatus != null) {
+      _secondaryStatus = secondaryStatus;
+    }
+    if (title != null) {
+      _title = title;
+    }
+    if (description != null) {
+      _description = description;
+    }
+
     notifyListeners();
     return this;
   }
 
   @override
   String toString() {
-    return '$runtimeType: prominence: $prominence, size: $size, tags: $tags';
+    return '$runtimeType:: tags: $tags, prominence: $_prominence, size: $_size, status: $_status, 2nd status: $_secondaryStatus';
   }
 
   // Deserializes from JSON to a slot
