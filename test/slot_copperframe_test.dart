@@ -174,6 +174,90 @@ void main() {
       expect(slot2.size, 'medium');
     });
 
+    test('setStatusWhereTags should update correct slots', () {
+      var slot1 = InfoMessageSlot(
+        tags: ['main'],
+      ).setValues(
+        prominence: 'important',
+        status: 'ok',
+      );
+      var slot2 = WarnMessageSlot(
+        tags: ['urgent'],
+      ).setValues(
+        prominence: 'very-important',
+        status: 'warning',
+      );
+      registry.registerSlot(slot1);
+      registry.registerSlot(slot2);
+
+      registry.setStatusWhereTags('error', tags: ['main']);
+      expect(slot1.status, 'error');
+      expect(slot2.status, 'warning');
+    });
+
+    test('setSecondaryStatusWhereTags should update correct slots', () {
+      var slot1 = InfoMessageSlot(
+        tags: ['main'],
+      ).setValues(
+        prominence: 'important',
+        secondaryStatus: 'small',
+      );
+      var slot2 = WarnMessageSlot(
+        tags: ['urgent'],
+      ).setValues(
+        prominence: 'very-important',
+        secondaryStatus: 'medium',
+      );
+      registry.registerSlot(slot1);
+      registry.registerSlot(slot2);
+
+      registry.setSecondaryStatusWhereTags('large', tags: ['main']);
+      expect(slot1.secondaryStatus, 'large');
+      expect(slot2.secondaryStatus, 'medium');
+    });
+
+    test('setTitleWhereTags should update correct slots', () {
+      var slot1 = InfoMessageSlot(
+        tags: ['main'],
+      ).setValues(
+        prominence: 'important',
+        title: 'small',
+      );
+      var slot2 = WarnMessageSlot(
+        tags: ['urgent'],
+      ).setValues(
+        prominence: 'very-important',
+        title: 'medium',
+      );
+      registry.registerSlot(slot1);
+      registry.registerSlot(slot2);
+
+      registry.setTitleWhereTags('large', tags: ['main']);
+      expect(slot1.title, 'large');
+      expect(slot2.title, 'medium');
+    });
+
+    test('setDesciptionWhereTags should update correct slots', () {
+      var slot1 = InfoMessageSlot(
+        tags: ['main'],
+      ).setValues(
+        prominence: 'important',
+        description: 'small',
+      );
+      var slot2 = WarnMessageSlot(
+        tags: ['urgent'],
+      ).setValues(
+        prominence: 'very-important',
+        description: 'medium',
+      );
+      registry.registerSlot(slot1);
+      registry.registerSlot(slot2);
+
+      registry.setDescriptionWhereTags('large', tags: ['main']);
+      expect(slot1.description, 'large');
+      expect(slot2.description, 'medium');
+    });
+
     test('setProminenceExcludingTags should update only untagged slots', () {
       var slot1 = InfoMessageSlot(
         tags: ['main'],
@@ -216,6 +300,91 @@ void main() {
       expect(slot2.size, 'medium');
     });
 
+    test('setStatusExcludingTags should update only untagged slots', () {
+      var slot1 = InfoMessageSlot(
+        tags: ['main'],
+      ).setValues(
+        prominence: 'important',
+        status: 'small',
+      );
+      var slot2 = WarnMessageSlot(
+        tags: ['urgent'],
+      ).setValues(
+        prominence: 'very-important',
+        status: 'medium',
+      );
+      registry.registerSlot(slot1);
+      registry.registerSlot(slot2);
+
+      registry.setStatusExcludingTags('large', tags: ['urgent']);
+      expect(slot1.status, 'large');
+      expect(slot2.status, 'medium');
+    });
+
+    test('setSecondaryStatusExcludingTags should update only untagged slots',
+        () {
+      var slot1 = InfoMessageSlot(
+        tags: ['main'],
+      ).setValues(
+        prominence: 'important',
+        secondaryStatus: 'small',
+      );
+      var slot2 = WarnMessageSlot(
+        tags: ['urgent'],
+      ).setValues(
+        prominence: 'very-important',
+        secondaryStatus: 'medium',
+      );
+      registry.registerSlot(slot1);
+      registry.registerSlot(slot2);
+
+      registry.setSecondaryStatusExcludingTags('large', tags: ['urgent']);
+      expect(slot1.secondaryStatus, 'large');
+      expect(slot2.secondaryStatus, 'medium');
+    });
+
+    test('setTitleExcludingTags should update only untagged slots', () {
+      var slot1 = InfoMessageSlot(
+        tags: ['main'],
+      ).setValues(
+        prominence: 'important',
+        title: 'small',
+      );
+      var slot2 = WarnMessageSlot(
+        tags: ['urgent'],
+      ).setValues(
+        prominence: 'very-important',
+        title: 'medium',
+      );
+      registry.registerSlot(slot1);
+      registry.registerSlot(slot2);
+
+      registry.setTitleExcludingTags('large', tags: ['urgent']);
+      expect(slot1.title, 'large');
+      expect(slot2.title, 'medium');
+    });
+
+    test('setDescriptionExcludingTags should update only untagged slots', () {
+      var slot1 = InfoMessageSlot(
+        tags: ['main'],
+      ).setValues(
+        prominence: 'important',
+        description: 'small',
+      );
+      var slot2 = WarnMessageSlot(
+        tags: ['urgent'],
+      ).setValues(
+        prominence: 'very-important',
+        description: 'medium',
+      );
+      registry.registerSlot(slot1);
+      registry.registerSlot(slot2);
+
+      registry.setDescriptionExcludingTags('large', tags: ['urgent']);
+      expect(slot1.description, 'large');
+      expect(slot2.description, 'medium');
+    });
+
     test('setProminenceByClassname should update correct class slots', () {
       var slot1 = InfoMessageSlot(
         tags: ['main'],
@@ -256,6 +425,90 @@ void main() {
       registry.setSizeByClassname('large', WarnMessageSlot);
       expect(slot1.size, 'small');
       expect(slot2.size, 'large');
+    });
+
+    test('setStatusByClassname should update correct class slots', () {
+      var slot1 = InfoMessageSlot(
+        tags: ['main'],
+      ).setValues(
+        prominence: 'important',
+        status: 'small',
+      );
+      var slot2 = WarnMessageSlot(
+        tags: ['urgent'],
+      ).setValues(
+        prominence: 'very-important',
+        status: 'medium',
+      );
+      registry.registerSlot(slot1);
+      registry.registerSlot(slot2);
+
+      registry.setStatusByClassname('large', WarnMessageSlot);
+      expect(slot1.status, 'small');
+      expect(slot2.status, 'large');
+    });
+
+    test('setSecondaryStatusByClassname should update correct class slots', () {
+      var slot1 = InfoMessageSlot(
+        tags: ['main'],
+      ).setValues(
+        prominence: 'important',
+        secondaryStatus: 'small',
+      );
+      var slot2 = WarnMessageSlot(
+        tags: ['urgent'],
+      ).setValues(
+        prominence: 'very-important',
+        secondaryStatus: 'medium',
+      );
+      registry.registerSlot(slot1);
+      registry.registerSlot(slot2);
+
+      registry.setSecondaryStatusByClassname('large', WarnMessageSlot);
+      expect(slot1.secondaryStatus, 'small');
+      expect(slot2.secondaryStatus, 'large');
+    });
+
+    test('setTitleByClassname should update correct class slots', () {
+      var slot1 = InfoMessageSlot(
+        tags: ['main'],
+      ).setValues(
+        prominence: 'important',
+        title: 'small',
+      );
+      var slot2 = WarnMessageSlot(
+        tags: ['urgent'],
+      ).setValues(
+        prominence: 'very-important',
+        title: 'medium',
+      );
+      registry.registerSlot(slot1);
+      registry.registerSlot(slot2);
+
+      registry.setTitleByClassname('large', WarnMessageSlot);
+      expect(slot1.title, 'small');
+      expect(slot2.title, 'large');
+    });
+
+    test('setDescriptionByClassname should update correct class slots', () {
+      var slot1 = InfoMessageSlot(
+        tags: ['main'],
+      ).setValues(
+        prominence: 'important',
+        description: 'small',
+      );
+      var slot2 = WarnMessageSlot(
+        tags: ['urgent'],
+      ).setValues(
+        prominence: 'very-important',
+        description: 'medium',
+      );
+      registry.registerSlot(slot1);
+      registry.registerSlot(slot2);
+
+      registry.setDescriptionByClassname('large', WarnMessageSlot);
+      expect(slot1.description, 'small');
+      expect(slot2.description, 'large');
     });
 
     test(
