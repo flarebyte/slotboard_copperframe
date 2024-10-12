@@ -8,7 +8,9 @@ model:
       - panel
   readme:
     highlights:
-      - Support multiple slots
+      - The slot can be described by a title, description, prominence or status
+      - Every time the slot is modified a notification is sent
+      - A registry allow to modify multiple slots at once
     links:
       - "[Dart dependencies](DEPENDENCIES.md)"
       - "[Usage](USAGE.md)"
@@ -19,10 +21,29 @@ model:
       - image-hero
     cheatsheetFormat: dart
     cheatsheet:
-      - title: Create an inventory used to keep track of rules
-        example: final optionsInventory = VxOptionsInventory()
-      - title: Create a string rule
-        example: "final rule = VxStringRules.charsLessThan<String>(name: 'test', metricStoreHolder: metricStoreHolder, optionsInventory: optionsInventory, failureProducer: SimpleMessageProducer('Too many characters'));"
+      - title: Create a new slot class
+        example: class InfoMessageSlot extends CopperframeSlotBase { InfoMessageSlot({ required super.tags,});}
+      - title: Instanciate a slot
+        example: "var slot = InfoMessageSlot( tags: ['main'],);"
+      - title: Set the prominence for a slot
+        example: "slot.prominence = 'important';"
+      - title: Set the size for a slot
+        example: "slot.size = 'small';"
+      - title: Set the status for a slot
+        example: "slot.status = 'ok';"
+      - title: Set the secondary status for a slot
+        example: "slot.secondaryStatus = '5+';"
+      - title: Set the title for a slot
+        example: "slot.title = 'Hello World!';"
+      - title: Set the description for a slot
+        example: "slot.description = 'This is a description';"
+      - title: Create a registry for slots
+        example: "final registry = CopperframeSlotRegistry();"
+      - title: Register a slot in the registry
+        example: "registry.registerSlot(slot);"
+      - title: Changes the providence for all main slots
+        example: "registry.setProminenceWhereTags('critical', tags: ['main']);"
+
   github:
     account: flarebyte
     name: slotboard_copperframe

@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 
+/// Base class for a slot that should be extended by all slots.
 abstract class CopperframeSlotBase with ChangeNotifier {
   String _prominence = '';
   String _size = '';
