@@ -13,7 +13,7 @@ abstract class CopperframeSlotBase with ChangeNotifier {
     required this.tags,
   });
 
-  // Serializes the slot to JSON
+  /// Serializes the slot to JSON
   Map<String, dynamic> toJson() {
     return {
       'tags': tags,
@@ -129,27 +129,28 @@ abstract class CopperframeSlotBase with ChangeNotifier {
     return '$runtimeType:: tags: $tags, prominence: $_prominence, size: $_size, status: $_status, 2nd status: $_secondaryStatus';
   }
 
-  // Deserializes from JSON to a slot
+  /// Deserializes from JSON to a slot
   static CopperframeSlotBase fromJson(Map<String, dynamic> json,
       CopperframeSlotBase Function(Map<String, dynamic>) createSlot) {
     return createSlot(json);
   }
 }
 
+/// Registry for slots
 class CopperframeSlotRegistry {
   final List<CopperframeSlotBase> _slots = [];
 
-  // Registers a slot
+  /// Registers a slot
   void registerSlot(CopperframeSlotBase slot) {
     _slots.add(slot);
   }
 
-  // Lists all registered slots
+  /// Lists all registered slots
   List<CopperframeSlotBase> list() {
     return _slots;
   }
 
-  // Sets prominence for all slots that match any of the provided tags
+  /// Sets prominence for all slots that match any of the provided tags
   void setProminenceWhereTags(String newProminence,
       {required List<String> tags}) {
     for (var slot in _slots) {
@@ -159,7 +160,7 @@ class CopperframeSlotRegistry {
     }
   }
 
-  // Sets size for all slots that match any of the provided tags
+  /// Sets size for all slots that match any of the provided tags
   void setSizeWhereTags(String newSize, {required List<String> tags}) {
     for (var slot in _slots) {
       if (slot.tags.any((tag) => tags.contains(tag))) {
@@ -168,7 +169,7 @@ class CopperframeSlotRegistry {
     }
   }
 
-  // Sets status for all slots that match any of the provided tags
+  /// Sets status for all slots that match any of the provided tags
   void setStatusWhereTags(String newStatus, {required List<String> tags}) {
     for (var slot in _slots) {
       if (slot.tags.any((tag) => tags.contains(tag))) {
@@ -177,7 +178,7 @@ class CopperframeSlotRegistry {
     }
   }
 
-  // Sets secondary status for all slots that match any of the provided tags
+  /// Sets secondary status for all slots that match any of the provided tags
   void setSecondaryStatusWhereTags(String newSecondaryStatus,
       {required List<String> tags}) {
     for (var slot in _slots) {
@@ -187,7 +188,7 @@ class CopperframeSlotRegistry {
     }
   }
 
-  // Sets title for all slots that match any of the provided tags
+  /// Sets title for all slots that match any of the provided tags
   void setTitleWhereTags(String newTitle, {required List<String> tags}) {
     for (var slot in _slots) {
       if (slot.tags.any((tag) => tags.contains(tag))) {
@@ -196,7 +197,7 @@ class CopperframeSlotRegistry {
     }
   }
 
-  // Sets description for all slots that match any of the provided tags
+  /// Sets description for all slots that match any of the provided tags
   void setDescriptionWhereTags(String newDescription,
       {required List<String> tags}) {
     for (var slot in _slots) {
@@ -206,7 +207,29 @@ class CopperframeSlotRegistry {
     }
   }
 
-  // Sets prominence for all slots except those that match any of the provided tags
+  /// Sets values for all slots that match any of the provided tags
+  void setValuesWhereTags(
+      {String? prominence,
+      String? size,
+      String? status,
+      String? secondaryStatus,
+      String? title,
+      String? description,
+      required List<String> tags}) {
+    for (var slot in _slots) {
+      if (slot.tags.any((tag) => tags.contains(tag))) {
+        slot.setValues(
+            prominence: prominence,
+            size: size,
+            status: status,
+            secondaryStatus: secondaryStatus,
+            title: title,
+            description: description);
+      }
+    }
+  }
+
+  /// Sets prominence for all slots except those that match any of the provided tags
   void setProminenceExcludingTags(String newProminence,
       {required List<String> tags}) {
     for (var slot in _slots) {
@@ -216,7 +239,7 @@ class CopperframeSlotRegistry {
     }
   }
 
-  // Sets size for all slots except those that match any of the provided tags
+  /// Sets size for all slots except those that match any of the provided tags
   void setSizeExcludingTags(String newSize, {required List<String> tags}) {
     for (var slot in _slots) {
       if (!slot.tags.any((tag) => tags.contains(tag))) {
@@ -225,7 +248,7 @@ class CopperframeSlotRegistry {
     }
   }
 
-  // Sets status for all slots except those that match any of the provided tags
+  /// Sets status for all slots except those that match any of the provided tags
   void setStatusExcludingTags(String newStatus, {required List<String> tags}) {
     for (var slot in _slots) {
       if (!slot.tags.any((tag) => tags.contains(tag))) {
@@ -234,7 +257,7 @@ class CopperframeSlotRegistry {
     }
   }
 
-  // Sets secondary status for all slots except those that match any of the provided tags
+  /// Sets secondary status for all slots except those that match any of the provided tags
   void setSecondaryStatusExcludingTags(String newSecondaryStatus,
       {required List<String> tags}) {
     for (var slot in _slots) {
@@ -244,7 +267,7 @@ class CopperframeSlotRegistry {
     }
   }
 
-  // Sets title for all slots except those that match any of the provided tags
+  /// Sets title for all slots except those that match any of the provided tags
   void setTitleExcludingTags(String newTitle, {required List<String> tags}) {
     for (var slot in _slots) {
       if (!slot.tags.any((tag) => tags.contains(tag))) {
@@ -253,7 +276,7 @@ class CopperframeSlotRegistry {
     }
   }
 
-  // Sets description for all slots except those that match any of the provided tags
+  /// Sets description for all slots except those that match any of the provided tags
   void setDescriptionExcludingTags(String newDescription,
       {required List<String> tags}) {
     for (var slot in _slots) {
@@ -263,28 +286,50 @@ class CopperframeSlotRegistry {
     }
   }
 
-  // Sets prominence based on class name
+  /// Sets values for all slots except those that match any of the provided tags
+  void setValuesExcludingTags(
+      {String? prominence,
+      String? size,
+      String? status,
+      String? secondaryStatus,
+      String? title,
+      String? description,
+      required List<String> tags}) {
+    for (var slot in _slots) {
+      if (!slot.tags.any((tag) => tags.contains(tag))) {
+        slot.setValues(
+            prominence: prominence,
+            size: size,
+            status: status,
+            secondaryStatus: secondaryStatus,
+            title: title,
+            description: description);
+      }
+    }
+  }
+
+  /// Sets prominence based on class name
   void setProminenceByClassname(String newProminence, Type className) {
     for (var slot in _slots.where((slot) => slot.runtimeType == className)) {
       slot.prominence = newProminence;
     }
   }
 
-  // Sets size based on class name
+  /// Sets size based on class name
   void setSizeByClassname(String newSize, Type className) {
     for (var slot in _slots.where((slot) => slot.runtimeType == className)) {
       slot.size = newSize;
     }
   }
 
-  // Sets status based on class name
+  /// Sets status based on class name
   void setStatusByClassname(String newStatus, Type className) {
     for (var slot in _slots.where((slot) => slot.runtimeType == className)) {
       slot.status = newStatus;
     }
   }
 
-  // Sets secondary status based on class name
+  /// Sets secondary status based on class name
   void setSecondaryStatusByClassname(
       String newSecondaryStatus, Type className) {
     for (var slot in _slots.where((slot) => slot.runtimeType == className)) {
@@ -292,17 +337,37 @@ class CopperframeSlotRegistry {
     }
   }
 
-  // Sets title based on class name
+  /// Sets title based on class name
   void setTitleByClassname(String newTitle, Type className) {
     for (var slot in _slots.where((slot) => slot.runtimeType == className)) {
       slot.title = newTitle;
     }
   }
 
-  // Sets description based on class name
+  /// Sets description based on class name
   void setDescriptionByClassname(String newDescription, Type className) {
     for (var slot in _slots.where((slot) => slot.runtimeType == className)) {
       slot.description = newDescription;
+    }
+  }
+
+  /// Sets values based on class name
+  void setValuesByClassname(
+      {String? prominence,
+      String? size,
+      String? status,
+      String? secondaryStatus,
+      String? title,
+      String? description,
+      required className}) {
+    for (var slot in _slots.where((slot) => slot.runtimeType == className)) {
+      slot.setValues(
+          prominence: prominence,
+          size: size,
+          status: status,
+          secondaryStatus: secondaryStatus,
+          title: title,
+          description: description);
     }
   }
 }
