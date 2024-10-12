@@ -33,8 +33,10 @@ abstract class CopperframeSlotBase with ChangeNotifier {
 
   /// Set the prominence of the slot (important, very-important,...)
   set prominence(String prominence) {
-    _prominence = prominence;
-    notifyListeners();
+    if (_prominence != prominence) {
+      _prominence = prominence;
+      notifyListeners();
+    }
   }
 
   /// The size of the slot (small, medium, large...)
@@ -49,9 +51,11 @@ abstract class CopperframeSlotBase with ChangeNotifier {
   }
 
   /// Set the status of the slot (ok, ko, ...)
-  set status(String status) {
-    _status = status;
-    notifyListeners();
+  set status(String newStatus) {
+    if (newStatus != _status) {
+      _status = newStatus;
+      notifyListeners();
+    }
   }
 
   /// The status of the slot (ok, ko, ...)
@@ -60,9 +64,11 @@ abstract class CopperframeSlotBase with ChangeNotifier {
   }
 
   /// Set the secondary status of the slot (1, 2, 3+, ...)
-  set secondaryStatus(String status) {
-    _secondaryStatus = status;
-    notifyListeners();
+  set secondaryStatus(String newSecondaryStatus) {
+    if (_secondaryStatus != newSecondaryStatus) {
+      _secondaryStatus = newSecondaryStatus;
+      notifyListeners();
+    }
   }
 
   /// The secondary status of the slot (1, 2, 3+, ...)
@@ -71,9 +77,11 @@ abstract class CopperframeSlotBase with ChangeNotifier {
   }
 
   /// Set a title for the slot
-  set title(String title) {
-    _title = title;
-    notifyListeners();
+  set title(String newTitle) {
+    if (_title != newTitle) {
+      _title = newTitle;
+      notifyListeners();
+    }
   }
 
   /// The title for the slot
@@ -82,9 +90,11 @@ abstract class CopperframeSlotBase with ChangeNotifier {
   }
 
   /// Set a description or tooltip for the slot
-  set description(String description) {
-    _description = description;
-    notifyListeners();
+  set description(String newDescription) {
+    if (_description != newDescription) {
+      _description = newDescription;
+      notifyListeners();
+    }
   }
 
   /// The description or tooltip for the slot
