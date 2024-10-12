@@ -14,15 +14,13 @@ jobs:
         os:
           - ubuntu-latest
           - macos-latest
-          - windows-latest
-        sdk:
-          - 3.4
     steps:
-      - uses: actions/checkout@v4
-      - uses: dart-lang/setup-dart@v1
+      - name: Clone repository
+        uses: actions/checkout@v4
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
         with:
-          sdk: ${{ matrix.sdk }}
-      - name: Install dependencies
-        run: dart pub get
-      - name: Run tests
-        run: dart test
+          channel: stable
+          flutter-version-file: pubspec.yaml
+      - run: flutter pub get
+      - run: flutter test
