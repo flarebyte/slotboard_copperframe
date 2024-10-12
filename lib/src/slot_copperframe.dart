@@ -103,6 +103,7 @@ abstract class CopperframeSlotBase with ChangeNotifier {
   }
 
   /// Sets the values for the slot
+  /// Only if the values are different from the existing values
   setValues(
       {String? prominence,
       String? size,
@@ -110,27 +111,37 @@ abstract class CopperframeSlotBase with ChangeNotifier {
       String? secondaryStatus,
       String? title,
       String? description}) {
-    if (prominence != null) {
+    var hasChanged = false;
+
+    if (prominence != null && _prominence != prominence) {
       _prominence = prominence;
+      hasChanged = true;
     }
 
-    if (size != null) {
+    if (size != null && _size != size) {
       _size = size;
+      hasChanged = true;
     }
-    if (status != null) {
+    if (status != null && _status != status) {
       _status = status;
+      hasChanged = true;
     }
-    if (secondaryStatus != null) {
+    if (secondaryStatus != null && _secondaryStatus != secondaryStatus) {
       _secondaryStatus = secondaryStatus;
+      hasChanged = true;
     }
-    if (title != null) {
+    if (title != null && _title != title) {
       _title = title;
+      hasChanged = true;
     }
-    if (description != null) {
+    if (description != null && _description != description) {
       _description = description;
+      hasChanged = true;
     }
 
-    notifyListeners();
+    if (hasChanged) {
+      notifyListeners();
+    }
     return this;
   }
 

@@ -130,6 +130,26 @@ void main() {
     expect(listenerCalls, hasLength(5));
   });
 
+  test(
+      'setting the same value with setValues should not nofify listeners multiple times',
+      () {
+    List<String> listenerCalls = [];
+    var slot = TestSlot(tags: ['main', 'urgent']);
+
+    slot.addListener(() {
+      listenerCalls.add('call');
+    });
+    for (int i = 0; i < 3; ++i) {
+      slot.setValues(
+          prominence: 'important',
+          status: 'ok',
+          secondaryStatus: '5+',
+          title: 'some title',
+          description: 'some description');
+    }
+    expect(listenerCalls, hasLength(1));
+  });
+
   group('CopperframeSlotRegistry Tests', () {
     late CopperframeSlotRegistry registry;
 
