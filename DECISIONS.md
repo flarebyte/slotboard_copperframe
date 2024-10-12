@@ -27,12 +27,14 @@ should be easily integratable for different apps.
 ### Use Cases:
 
 1.  **Responsive Layout**:
+
     -   On a large screen, the UI displays a two-column layout: the main panel
         on the left and the side panel on the right.
     -   On smaller screens or when the user prefers, the UI displays a
         one-column layout with panels stacked vertically.
 
 2.  **Dynamic Content in Main Panel**:
+
     -   The main panel contains slots such as:
         -   A sub-panel for editing fields, which displays a form input.
         -   A sub-panel for document preview, showing a rendered preview of a
@@ -52,6 +54,7 @@ should be easily integratable for different apps.
         notification panel).
 
 4.  **Adaptive Rendering**:
+
     -   Each sub-panel should adapt its rendering based on screen size:
         -   On a large screen, a full panel with title bar and detailed content.
         -   On a small screen, a condensed version like an icon or minimal title.
@@ -70,6 +73,7 @@ should be easily integratable for different apps.
 ### Edge Cases:
 
 1.  **Screen size transition**:
+
     -   When the app is resized from large to small, the panels should smoothly
         adjust from two-column to one-column layout, without losing content or
         breaking the visual flow.

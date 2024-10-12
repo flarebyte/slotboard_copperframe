@@ -1,3 +1,4 @@
-## 1.0.0
+## 0.3.0
 
 -   Initial version.
+-   Slots to represent panels including notifications
